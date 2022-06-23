@@ -8,26 +8,17 @@ function App() {
   const [description, setDescription] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [name, setName] = useState();
-  const [resutlUrl, setResultUrl] = useState();
+  const [resultUrl, setResultUrl] = useState();
 
 
   const callback =  async () =>{
-      const added = await client.add(JSON.stringify({"description":"LearningMan NFT.","image":"https://www.learningman.co/static/cb9efbeacb1737c460cc47aeeb70535e/98540/jesse-desc.png","name":"JESSE","attributes":[]}) )
+      const added = await client.add(JSON.stringify({"description":description,"image":imageUrl,"name":name,"attributes":[]}) )
       
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
       console.log(url)
       setResultUrl(url)
      }
   
-  useEffect(()=>{
-     ( async () =>{
-      const added = await client.add(JSON.stringify({"description":"LearningMan NFT.","image":"https://www.learningman.co/static/cb9efbeacb1737c460cc47aeeb70535e/98540/jesse-desc.png","name":"JESSE","attributes":[]}) )
-      console.log(added)  
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      console.log(url)
-     })()
-  }, [])
-
   return (
     <div className="App">
       <h1>IPFS NFT uploader</h1>
@@ -70,7 +61,7 @@ function App() {
 
 
       <div>
-        result IPFS URL : {resutlUrl}
+        result IPFS URL : {resultUrl}
       </div>
     
     </div>
